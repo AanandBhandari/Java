@@ -1,60 +1,68 @@
-import java.awt.event.*;
-
 import javax.swing.*;
-
-public class Test extends JFrame {
-    JLabel l1,l2,l3,l4;
-    JTextField t1,t2;
-    JButton b1;
-    public Test() {
-    }
-
-    public Test(String s) {
+import java.awt.event.*;
+import java.awt.geom.*;
+public class Test extends JFrame{
+    JLabel enterP,enterT,enterR,intrest;
+    JTextField p,t,r;
+    JButton i;
+    public Test(){};
+    public Test(String s){
         super(s);
     }
     public void setComponents() {
-        l1 = new JLabel("Addition of two number");
-        l2 = new JLabel("Enter first number");
-        l3 = new JLabel("Enter second number");
-        l4 = new JLabel();
-        t1 = new JTextField();
-        t2 = new JTextField();
-        b1 = new JButton("Add");
-
-        // setBounds to all objs
         setLayout(null);
-        l1.setBounds(150,50,200,20);
-        l2.setBounds(50,80,200,20);
-        t1.setBounds(260,80,80,20);
-        l3.setBounds(50,110,200,20);
-        t2.setBounds(260, 110, 80, 20);
-        b1.setBounds(150, 140, 80, 20);
-        // add event listner
-        b1.addActionListener(new Handler());
-        l4.setBounds(50,170,200,40);
-        // adding these objs in JFrame
-        add(l1);
-        add(l2);
-        add(t1);
-        add(l3);
-        add(t2);
-        add(b1);
-        add(l4);
+        // intrest 
+        intrest = new JLabel();
+        intrest.setBounds(100, 170, 200, 20);
+        add(intrest);
+        // principle
+        enterP = new JLabel();
+        enterP.setText("Enter Principle");
+        enterP.setBounds(50, 50, 200, 20);
+        add(enterP);
+        p = new JTextField();
+        p.setBounds(250, 50, 80, 20);
+        add(p);
+        // time
+        enterT = new JLabel();
+        enterT.setText("Enter Time");
+        enterT.setBounds(50, 80, 200, 20);
+        add(enterT);
+        t = new JTextField();
+        t.setBounds(250, 80, 80, 20);
+        add(t);
+        // rate
+        enterR = new JLabel();
+        enterR.setText("Enter Rate");
+        enterR.setBounds(50, 110, 200, 20);
+        add(enterR);
+        r = new JTextField();
+        r.setBounds(250, 110, 80, 20);
+        add(r);
+        // caluclate Intrest button
+        i = new JButton("Calculate Intrest");
+        i.setBounds(100, 140, 200, 20);
+        i.addActionListener(new Handler());
+        add(i);
     }
     class Handler implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            int a = Integer.parseInt(t1.getText());
-            int b = Integer.parseInt(t2.getText());
-            int s = a+b;
-            l4.setText("Sum is "+s);
+        public void actionPerformed(ActionEvent e){
+            int pr = Integer.parseInt(p.getText());
+            int ti = Integer.parseInt(t.getText());
+            int ra = Integer.parseInt(r.getText());
+            double in = (pr*ti*ra)/100;
+            // System.out.println(in);
+            intrest.setText("Intrest = "+in);
         }
     }
-
     public static void main(String[] args) {
-        Test jf = new Test("Swing Example");
+        Test jf = new Test("simple interest");
         jf.setComponents();
         jf.setVisible(true);
-        jf.setSize(500, 500);
+        // jf.setShape(new Ellipse2D.Float(20f, -30f, 250.0f, 150.0f));
+        jf.setSize(500,500);
+        jf.setLocation(500,300);
         jf.setDefaultCloseOperation(jf.EXIT_ON_CLOSE);
+
     }
 }
