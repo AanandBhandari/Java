@@ -1,3 +1,5 @@
+import java.awt.event.*;
+
 import javax.swing.*;
 
 public class Test extends JFrame {
@@ -27,6 +29,8 @@ public class Test extends JFrame {
         l3.setBounds(50,110,200,20);
         t2.setBounds(260, 110, 80, 20);
         b1.setBounds(150, 140, 80, 20);
+        // add event listner
+        b1.addActionListener(new Handler());
         l4.setBounds(50,170,200,40);
         // adding these objs in JFrame
         add(l1);
@@ -36,6 +40,14 @@ public class Test extends JFrame {
         add(t2);
         add(b1);
         add(l4);
+    }
+    class Handler implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            int a = Integer.parseInt(t1.getText());
+            int b = Integer.parseInt(t2.getText());
+            int s = a+b;
+            l4.setText("Sum is "+s);
+        }
     }
 
     public static void main(String[] args) {
